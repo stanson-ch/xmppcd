@@ -54,8 +54,8 @@ struct _xmpp {
     char		spool[PATH_MAX];
     char		user[NAME_MAX];
     char		group[NAME_MAX];
-    int			ka_time;
-    int			ka_intvl;
+    long		ka_time;
+    long		ka_intvl;
 
     xmpp_ctx_t		*ctx;
     xmpp_conn_t		*conn;
@@ -86,8 +86,8 @@ struct _conf_params	params[] =
     { "spool",              's', { &xmpp.spool },        XMPPCD_SPOOL },
     { "user",               's', { &xmpp.user },         "nobody" },
     { "group",              's', { &xmpp.group },        "nogroup" },
-    { "keepalive-timeout",  's', { &xmpp.ka_time },      "90" },
-    { "keepalive-interval", 's', { &xmpp.ka_intvl },     "90" },
+    { "keepalive-timeout",  'l', { &xmpp.ka_time },      "90" },
+    { "keepalive-interval", 'l', { &xmpp.ka_intvl },     "90" },
 
     { "verbose",            'b', { &g_verbose },         "yes" },
     { "daemon",             'b', { &g_daemon },          "no" },
