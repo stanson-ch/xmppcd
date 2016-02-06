@@ -1,0 +1,125 @@
+#
+# xmppcd.conf		XMPP Client Daemon configuration file
+#
+# Version:		@sysconfdir@/xmppcd.conf	@PACKAGE_VERSION@
+#
+
+# Server hostname
+#
+# If server hostname is empty, xmppcd will use server name from JID
+#
+# default value: ""
+#
+server "xmpp.example.com"
+
+# Server XMPP port
+#
+# 0 - use standard ports
+#
+# default value: 0
+#
+#port 5222
+
+# User JID
+#
+# Must be set.
+#
+jid "user@example.com"
+
+# User password
+#
+# Must be set.
+#
+password "some password"
+
+# Be verbose and show a lot of debug info
+#
+# default value: "no"
+#
+verbose yes
+
+# Daemonize after start
+#
+# default value: "no"
+#
+#daemon yes
+
+# Use syslog instead of stderr for logging
+#
+# works only for console mode, since daemon mode always use syslog
+#
+# default value: "no"
+#
+#syslog yes
+
+# Reconnect to server
+#
+# Automatically reconnect to server if connection went down.
+# xmppcd will wait 5 seconds between reconnect attempts.
+#
+# default value: "yes"
+#
+#persist no
+
+# Disable TLS
+#
+# default value: "no"
+#
+#disable-tls yes
+
+# Require TLS
+#
+# default value: "no"
+#
+require-tls yes
+
+# Use legacy SSL on port 5223
+#
+# default value: "no"
+#
+#legacy-ssl yes
+
+# Spool directory for messages
+#
+# There are 3 subdirectories - "in", "out" and "sent".
+# Recived messages will be saved into "in" directory.
+# Text from files _moved_ to "out" subdirectory
+# will be sent, and moved to "sent" subdirectory.
+#
+# default value: "@localstatedir@/spool/xmppcd"
+#
+#spool "@localstatedir@/spool/xmppcd"
+
+# Run as user
+#
+# default value: "nobody"
+#
+#user "nobody"
+
+# Run as group
+#
+# default value: "nogroup"
+#
+#group "nogroup"
+
+# TCP keepalive timeout
+# 
+# The interval between the last data packet sent 
+# (simple ACKs are not considered data) and the first keepalive probe
+# Set this parameter to 0 to turn off keepalives
+#
+# default value: 90
+#
+keepalive-timeout 90
+
+# TCP keepalive interval
+# 
+# The interval between subsequential keepalive probes,
+# regardless of what the connection has exchanged in the meantime 
+# Number of unacknowledged probes to send before considering the connection dead
+# is set to 5 in libstrophe.
+# Set this parameter to 0 to turn off keepalives
+#
+# default value: 90
+#
+keepalive-timeout 90
