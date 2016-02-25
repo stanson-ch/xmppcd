@@ -589,7 +589,13 @@ reconnect:
     xmpp_conn_set_pass( xmpp.conn, xmpp.pass );
 
     /* initiate connection */
-    xmpp_connect_client( xmpp.conn, xmpp.server[0] ? xmpp.server : NULL, xmpp.port, conn_handler, &xmpp );
+    ret = xmpp_connect_client( xmpp.conn, xmpp.server[0] ? xmpp.server : NULL, xmpp.port, conn_handler, &xmpp );
+    if( ret < 0 )
+    {
+	sleep( 5 );
+	_logf( LOG_INFO, "Can't connect, retrying in 5 seconds...\n" );
+	goto reconnect;
+    }
 
     /* set TCP keepalive */
     xmpp_conn_set_keepalive( xmpp.conn, xmpp.ka_time, xmpp.ka_intvl );
