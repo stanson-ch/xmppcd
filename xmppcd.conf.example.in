@@ -122,4 +122,4 @@ keepalive-timeout 90
 #
 # default value: 90
 #
-keepalive-timeout 90
+keepalive-interval 90
