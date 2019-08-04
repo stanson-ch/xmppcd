@@ -51,7 +51,7 @@ struct _xmpp {
     long		disable_tls;
     long		require_tls;
     long		legacy_ssl;
-    char		spool[PATH_MAX];
+    char		spool[PATH_MAX - 32];
     char		user[NAME_MAX];
     char		group[NAME_MAX];
     long		ka_time;
@@ -116,7 +116,7 @@ void dump_config( struct _conf_params * params )
 void file_send( struct _xmpp *x, char *name )
 {
     xmpp_stanza_t	*msg, *body, *text;
-    char		oldpath[PATH_MAX],newpath[PATH_MAX],id[NAME_MAX];
+    char		oldpath[PATH_MAX],newpath[PATH_MAX],id[20];
     int			fd, ret;
     char		buf[4096], *s, *to = "";
     struct timeval	now;
@@ -592,8 +592,8 @@ reconnect:
     ret = xmpp_connect_client( xmpp.conn, xmpp.server[0] ? xmpp.server : NULL, xmpp.port, conn_handler, &xmpp );
     if( ret < 0 )
     {
-	sleep( 5 );
 	_logf( LOG_INFO, "Can't connect, retrying in 5 seconds...\n" );
+	sleep( 5 );
 	goto reconnect;
     }
 
