@@ -5,13 +5,15 @@ TO=$1
 MSG=$2
 
 [ -z "${TO}" -o -z "${MSG}" ] && { 
-    echo -e "\nERROR: Too few arguments!"
-    echo -e "\nUsage: $(basename $0) some_user@xmpp-server.com \"Message text\"\n"
+    echo "ERROR: Too few arguments!"
+    echo "Usage: $(basename $0) some_user@xmpp-server.com \"Message text\"\n"
     exit 1 
 }
 
 FILE=`mktemp -t xmppcd.XXXXXX`
-echo -ne "To: ${TO}\n\n${MSG}" > "${FILE}"
+echo "To: ${TO}" > "${FILE}"
+echo >> "${FILE}"
+echo "${MSG}" >> "${FILE}"
 chmod 644 "${FILE}"
 mv "${FILE}" "${SPOOL_OUT}"
 
