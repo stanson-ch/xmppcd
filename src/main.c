@@ -137,6 +137,8 @@ void file_send( struct _xmpp *x, char *name )
     ret = read( fd, buf, sizeof(buf) - 1 );
     close( fd );
 
+    if( ret < 0 ) goto out_rename;
+
     buf[ret] = 0;
     s = buf;
 
